@@ -1,0 +1,10 @@
+[Server]
+BindAddress = "0.0.0.0:50066"
+
+[Database]
+URL = "postgresql://user:12345@0.0.0.0:5432/postgres?sslmode=disable"
+
+[Log]
+LogLevel = "debug"
+LogOutput = "file|stdout"
+LogPath = "users_ms.log"

@@ -1,0 +1,42 @@
+syntax = "proto3";
+package orders;
+option go_package = "internal/api";
+
+service UsersServices {
+    rpc CreateUser(UsersRequest) returns (UsersResponse) {}
+    rpc GetUsers(UsersRequest) returns (UsersResponse) {}
+    rpc UpdateUser(UsersRequest) returns (UsersResponse) {}
+    rpc DeleteUsers(DeleteRequest) returns (UsersResponse) {}
+}
+
+message UsersRequest {
+    fixed64 Id = 1;
+    string Login = 2;
+    string Password = 3;
+    bool IsDeleted = 4;
+    string CreatedAt = 5;
+    string UpdatedAt = 6;
+}
+
+message UsersResponse {
+    repeated DBUser Users = 1;
+}
+
+message DBUser {
+    // @gotags: db:"id"
+    fixed64 Id = 1;
+    // @gotags: db:"login"
+    string Login = 2;
+    // @gotags: db:"password"
+    string Password = 3;
+    // @gotags: db:"is_deleted"
+    bool IsDeleted = 4;
+    // @gotags: db:"created_at"
+    string CreatedAt = 5;
+    // @gotags: db:"updated_at"
+    string UpdatedAt = 6;
+}
+
+message DeleteRequest {
+    repeated fixed64 Ids = 1;
+}
